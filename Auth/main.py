@@ -6,6 +6,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.routes import auth
 from backend.routes import user
 
+from backend import models # Import your models file
+from backend.database import engine # Import the engine from your database setup
+models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI(debug=True)
 
 origins = [
